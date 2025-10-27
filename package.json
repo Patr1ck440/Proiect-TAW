@@ -1,18 +1,22 @@
 {
-  "name": "your-project-name",
+  "name": "proiectan",
+  "version": "0.0.0",
   "private": true,
-  "version": "1.6.4",
   "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
   "scripts": {
-    "list": "ls -a"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.16",
-    "bootstrap-icons": "^1.13.1",
-    "tailwindcss": "^4.1.16"
+    "vue": "^3.5.22"
   },
-  "packageManager": "yarn@4.10.3",
   "devDependencies": {
-    "vite": "^7.1.12"
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.11",
+    "vite-plugin-vue-devtools": "^8.0.3"
   }
 }
