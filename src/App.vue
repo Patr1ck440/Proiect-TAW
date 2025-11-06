@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import Header from './components/Header.vue'
-import Footer from './components/Footer.vue' // 👈 importăm footerul
+import Footer from './components/Footer.vue'
+import MainArea from './components/MainArea.vue' // 👈 importăm zona principală
 
 // variabile reactive
 const appTitle = 'EduBac'
@@ -18,15 +19,21 @@ function handleToggleTheme() {
     <!-- Header -->
     <Header :title="appTitle" @toggle-theme="handleToggleTheme" />
 
-    <!-- Conținut principal -->
+    <!-- Zona principală (MainArea) -->
     <main class="p-6 min-h-[70vh]">
-      <h2 class="text-2xl font-semibold mb-4">dsadsadasdsad👋</h2>
-      <p>hrthrthtrhtrhrt</p>
+      <MainArea /> <!-- 👈 aici se va vedea întrebarea și câmpul de răspuns -->
     </main>
 
     <!-- Footer -->
-    <Footer /> <!-- 👈 adăugat aici -->
+    <Footer />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+</style>
