@@ -110,7 +110,7 @@ header button:active {
 }
 
 .answer-input textarea {
-  width: 100%;
+  width: 102%;
   height: 150px;
   padding: 12px;
   border-radius: 10px;
@@ -329,7 +329,8 @@ footer {
   border: 1px solid darkcyan;
   font-size: 1rem;
   resize: none;
-}
+  margin-top: 2% ;
+ }
 
 .answer-input button {
   align-self: flex-end;
@@ -364,4 +365,7 @@ footer {
   color: darkcyan;
   width: 100%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.answer-input textarea {
+  width: 102%;
 }

@@ -2,29 +2,40 @@
 import { ref } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
-import MainArea from './components/MainArea.vue' // 👈 importăm zona principală
+import { RouterView } from 'vue-router'
+import BackgroundSetter from './components/BackgroundSetter.vue'
+import ShadowSetter from './components/ShadowSetter.vue'
+import BorderSetter from './components/BorderSetter.vue'
+import PaddingSetter from './components/PaddingSetter.vue'
 
-// variabile reactive
 const appTitle = 'EduBac'
 const isDark = ref(false)
 
-// funcție pentru schimbarea temei
 function handleToggleTheme() {
   isDark.value = !isDark.value
 }
 </script>
 
 <template>
+  
+  <BackgroundSetter />
+  <ShadowSetter />
+  <BorderSetter />
+  <PaddingSetter />
   <div :class="isDark ? 'bg-gray-900 text-white' : 'bg-white text-black'">
-    <!-- Header -->
-    <Header :title="appTitle" @toggle-theme="handleToggleTheme" />
+    <!-- 👈 navighează la pagina Despre -->
+    <!-- 👈 navighează la Home -->
+    <Header 
+      :title="appTitle"
+      @toggle-theme="handleToggleTheme"
+      @about="$router.push('/despre')"
+      @exercitii="$router.push('/')"
+    />
 
-    <!-- Zona principală (MainArea) -->
     <main class="p-6 min-h-[70vh]">
-      <MainArea /> <!-- 👈 aici se va vedea întrebarea și câmpul de răspuns -->
+      <RouterView /> <!-- 👈 aici se încarcă pagina curentă -->
     </main>
 
-    <!-- Footer -->
     <Footer />
   </div>
 </template>

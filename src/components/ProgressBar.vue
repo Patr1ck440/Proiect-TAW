@@ -53,7 +53,7 @@ const progressPercent = computed(() =>
 
 .progress-fill {
   height: 100%;
-  background-color: darkcyan;
+  background-color: black;
   transition: width 0.4s ease;
 }
 </style>

@@ -23,7 +23,7 @@ function submitAnswer() {
   gap: 10px;
 }
 textarea {
-  width: 100%;
+  width: 102%;
   height: 150px;
   padding: 10px;
   border-radius: 8px;
