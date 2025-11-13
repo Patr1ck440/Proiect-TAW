@@ -159,31 +159,5 @@ function nextChapter() {
 </script>
 
 <style scoped>
-.main-area {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
 
-.next-btn {
-  align-self: flex-end;
-  background-color: darkcyan;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.next-btn:hover { background-color: #009999; transform: translateY(-1px); }
-.next-btn:active { background-color: #008080; transform: translateY(0); }
-
-.chapter-end { text-align: center; padding: 12px; border-radius: 10px; background: #eef6f6; color: #033; }
-.no-incorrect { text-align: center; margin-top: 8px; color: #155724; }
 </style>

@@ -7,11 +7,5 @@ defineProps(['title'])
 </script>
 
 <style scoped>
-.chapter-title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 12px;
-  color: black;
-}
+
 </style>

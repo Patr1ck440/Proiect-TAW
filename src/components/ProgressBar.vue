@@ -30,30 +30,5 @@ const progressPercent = computed(() =>
 </script>
 
 <style scoped>
-.progress-wrapper {
-  width: 100%;
-  max-width: 600px;
-  margin: 10px auto 20px auto;
-}
 
-.progress-info {
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.progress-bar {
-  height: 12px;
-  width: 100%;
-  background-color: #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.progress-fill {
-  height: 100%;
-  background-color: black;
-  transition: width 0.4s ease;
-}
 </style>

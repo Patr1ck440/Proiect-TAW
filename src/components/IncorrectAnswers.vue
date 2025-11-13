@@ -16,11 +16,5 @@ defineProps({
 </script>
 
 <style scoped>
-.incorrect-answers {
-  margin-top: 20px;
-  padding: 12px;
-  border-radius: 10px;
-  background-color: #f8d7da;
-  color: #721c24;
-}
+
 </style>

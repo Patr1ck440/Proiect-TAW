@@ -18,16 +18,5 @@ defineProps({
 </script>
 
 <style scoped>
-.question-box {
-  font-size: 1.5rem;
-  background: #eef;
-  padding: 20px;
-  border-radius: 12px;
-  width: 100%;
-}
-.no-question {
-  text-align: center;
-  color: #333;
-  opacity: 0.9;
-}
+
 </style>
