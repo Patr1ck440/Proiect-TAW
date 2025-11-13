@@ -32,7 +32,7 @@
         </ul>
       </div>
 
-      <!-- Contact / Social -->
+      <!-- Contact și Social Media -->
       <div>
         <h3 class="footer-title">Contact</h3>
         <p class="footer-contact">contact@codelearn.ro</p>

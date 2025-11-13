@@ -1,9 +1,9 @@
 <template>
   <header class="flex justify-between items-center bg-blue-600 text-white p-4 shadow" id="titlu">
-    <!-- titlul vine ca prop -->
+    
     <h1 class="text-xl font-bold">{{ title }}</h1>
 
-    <!-- Al doilea buton, plasat înainte de butonul Bootstrap -->
+   
     <button 
       @click="$emit('exercitii')" 
       class="bg-white text-blue-600 font-semibold px-3 py-1 rounded hover:bg-gray-200 mr-2"
@@ -25,7 +25,7 @@
       Despre
     </button>
 
-    <!-- Primul buton cu SVG Bootstrap -->
+  
      
     <button id="toggle-themee"
       @click="$emit('toggle-theme')" 
@@ -40,6 +40,6 @@
 
 <script>
 export default {
-  props: ['title'], // primește titlul din App.vue
+  props: ['title'], 
 }
 </script>

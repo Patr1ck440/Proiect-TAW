@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted } from 'vue'
 
-// când componenta e montată, setăm background-ul fix
+
 onMounted(() => {
-  document.body.style.backgroundColor = 'darkcyan' // albastru deschis
+  document.body.style.backgroundColor = 'darkcyan' 
 })
 </script>
 

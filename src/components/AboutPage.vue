@@ -9,7 +9,7 @@
 </template>
 
 <script setup>
-// fără logică pentru moment
+
 </script>
 
 <style scoped>

@@ -17,7 +17,7 @@ const props = defineProps({
   },
   avatar: {
     type: String,
-    default: '' // poți pune link default la un avatar
+    default: '' 
   },
   chaptersCompleted: {
     type: Number,

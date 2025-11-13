@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from 'vue'
 
-// când componenta e montată, schimbăm fontul documentului
+
 onMounted(() => {
   document.body.style.fontFamily = '"Arial", serif'
 })

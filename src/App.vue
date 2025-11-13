@@ -23,8 +23,7 @@ function handleToggleTheme() {
   <BorderSetter />
   <PaddingSetter />
   <div :class="isDark ? 'bg-gray-900 text-white' : 'bg-white text-black'">
-    <!-- 👈 navighează la pagina Despre -->
-    <!-- 👈 navighează la Home -->
+   
     <Header 
       :title="appTitle"
       @toggle-theme="handleToggleTheme"
@@ -33,7 +32,7 @@ function handleToggleTheme() {
     />
 
     <main class="p-6 min-h-[70vh]">
-      <RouterView /> <!-- 👈 aici se încarcă pagina curentă -->
+      <RouterView /> 
     </main>
 
     <Footer />

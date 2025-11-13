@@ -10,6 +10,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- componentă statică -->
+  
   <div style="display: none"></div>
 </template>
