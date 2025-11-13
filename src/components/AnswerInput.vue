@@ -17,20 +17,5 @@ function submitAnswer() {
 </script>
 
 <style scoped>
-.answer-input {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-textarea {
-  width: 102%;
-  height: 150px;
-  padding: 10px;
-  border-radius: 8px;
-  resize: none;
-}
-button {
-  align-self: flex-end;
-  padding: 8px 16px;
-}
+
 </style>
