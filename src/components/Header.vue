@@ -15,7 +15,7 @@
       @click="$emit('rezultate')" 
       class="bg-white text-blue-600 font-semibold px-3 py-1 rounded hover:bg-gray-200 mr-2"
     >
-      Rezultate
+      Capitole
     </button>
 
      <button 
@@ -23,6 +23,20 @@
       class="bg-white text-blue-600 font-semibold px-3 py-1 rounded hover:bg-gray-200 mr-2"
     >
       Despre
+    </button>
+
+    <button 
+      @click="$emit('profile')" 
+      class="bg-white text-blue-600 font-semibold px-3 py-1 rounded hover:bg-gray-200 mr-2"
+    >
+      Profil
+    </button>
+
+    <button 
+      @click="$emit('setari')" 
+      class="bg-white text-blue-600 font-semibold px-3 py-1 rounded hover:bg-gray-200 mr-2"
+    >
+      Setări
     </button>
 
   

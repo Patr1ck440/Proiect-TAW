@@ -1,6 +1,6 @@
 <template>
   <div class="user-profile">
-    <img v-if="avatar" :src="avatar" alt="Avatar" class="avatar" />
+   
     <div class="info">
       <h3>{{ name }}</h3>
       <p>Capitole completate: {{ chaptersCompleted }} / {{ totalChapters }}</p>
