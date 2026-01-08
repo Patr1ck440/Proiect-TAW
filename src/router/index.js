@@ -11,6 +11,8 @@ import ChapterPage from '@/pages/ChapterPage.vue'
 import ScoreboardPage from '@/pages/ScoreboardPage.vue'
 import ResultPage from '@/pages/ResultPage.vue'
 
+
+
 const routes = [
   { path: '/', name: 'quiz', component: QuizPage },
   { path: '/despre', name: 'about', component: AboutPage },

@@ -58,7 +58,13 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
+import { useSettingsStore } from '@/stores/settingsStore'
+import { useUserStore } from '@/stores/userStore'
+
+// Store-uri Pinia
+const settingsStore = useSettingsStore()
+const userStore = useUserStore()
 
 // Props pentru titlu
 const props = defineProps(['title'])
@@ -66,15 +72,12 @@ const props = defineProps(['title'])
 // Emit pentru butoane
 const emit = defineEmits(['exercitii', 'rezultate', 'about', 'profile', 'setari', 'toggle-theme'])
 
-// State pentru tema
-const isDark = ref(false)
+// Tema din store (în loc de ref local)
+const isDark = computed(() => settingsStore.getTheme === 'dark')
 
-// WATCH 1: Monitorizează schimbarea temei
-watch(isDark, (newValue, oldValue) => {
-  console.log(`🎨 Watch 1 activat: Tema s-a schimbat de la ${oldValue ? 'dark' : 'light'} la ${newValue ? 'dark' : 'light'}`)
-  
-  // Salvează în localStorage
-  localStorage.setItem('theme', newValue ? 'dark' : 'light')
+// WATCH pentru tema
+watch(isDark, (newValue) => {
+  console.log(` Watch activat: Tema s-a schimbat la ${newValue ? 'dark' : 'light'}`)
   
   // Aplică clasa pe body/html
   if (newValue) {
@@ -89,36 +92,22 @@ watch(isDark, (newValue, oldValue) => {
   emit('toggle-theme', newValue)
 })
 
-// Funcția pentru toggle
+// Funcția pentru toggle - folosește store-ul
 const toggleTheme = () => {
-  isDark.value = !isDark.value
-  console.log(`🔘 Tema a fost toggle-uită la: ${isDark.value ? 'dark' : 'light'}`)
+  const newTheme = settingsStore.getTheme === 'light' ? 'dark' : 'light'
+  settingsStore.setTheme(newTheme)
+  console.log(` Tema a fost toggle-uită la: ${newTheme}`)
 }
 
 // Inițializare la mount
 onMounted(() => {
-  // Verifică tema salvată
-  const savedTheme = localStorage.getItem('theme')
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+  // Încarcă setările din localStorage în store
+  settingsStore.loadSettings()
   
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    isDark.value = true
-  }
-  
-  // Aplică imediat clasa
-  if (isDark.value) {
+  // Aplică clasa imediat dacă e cazul
+  if (settingsStore.getTheme === 'dark') {
     document.documentElement.classList.add('dark')
     document.body.classList.add('dark-mode')
-  }
-})
-
-// WATCH 2: Exemplu adițional - monitorizează schimbările în localStorage pentru tema altor tab-uri
-watch(() => window.matchMedia('(prefers-color-scheme: dark)').matches, (isSystemDark) => {
-  console.log(`🖥️ Watch 2: Preferința sistemului pentru tema s-a schimbat la: ${isSystemDark ? 'dark' : 'light'}`)
-  
-  // Dacă utilizatorul nu a setat o preferință explicită, urmează sistemul
-  if (!localStorage.getItem('theme')) {
-    isDark.value = isSystemDark
   }
 })
 </script>
