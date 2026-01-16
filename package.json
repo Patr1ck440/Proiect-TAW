@@ -23,6 +23,7 @@
     "@eslint/json": "^0.14.0",
     "@eslint/markdown": "^7.5.1",
     "@vitejs/plugin-vue": "^6.0.3",
+    "baseline-browser-mapping": "^2.9.14",
     "esbuild": "^0.27.2",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",

@@ -9,22 +9,22 @@ export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
-VitePWA({
-  registerType: 'autoUpdate',
-  devOptions: {
-    enabled: true
-  },
-  manifest: {
-    theme_color: "#169bcb",
-    icons: [
-      {
-        src: "icons/android-chrome-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
+    VitePWA({
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
+      manifest: {
+        theme_color: "#169bcb",
+        icons: [
+          {
+            src: "icons/therock.png",
+            sizes: "192x192",
+            type: "image/png",
+          }
+        ]
       }
-    ]
-  }
-})
+    })
   ],
 
   resolve: {
