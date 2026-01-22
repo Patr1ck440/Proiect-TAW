@@ -1,19 +1,20 @@
 <template>
   <div>
     <h1>Capitole</h1>
+
     <ul>
-      <li v-for="(chapter, index) in chapters" :key="index">
-        <router-link :to="`/capitole/${index}`">{{ chapter.title }}</router-link>
+      <li v-for="chapter in chapters" :key="chapter.id">
+        <router-link :to="`/capitole/${chapter.id}`">
+          {{ chapter.title }} – {{ chapter.subject }}
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useChapterStore } from '@/stores/chapterStore'
 
-const chapters = ref([
-  { title: 'Capitolul 1: Variabile' },
-  { title: 'Capitolul 2: Bucla for' }
-])
+const chapterStore = useChapterStore()
+const chapters = chapterStore.getAllChapters
 </script>

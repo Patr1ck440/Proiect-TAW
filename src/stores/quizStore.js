@@ -7,21 +7,23 @@ export const useQuizStore = defineStore('quiz', () => {
   const quizzes = ref([
     {
       id: 1,
-      title: 'Matematică - Algebră',
-      description: 'Exerciții de algebră pentru BAC',
-      difficulty: 'mediu',
-      questionsCount: 10,
+      title: 'Capitolul 1: Variabile',
+      questions: [
+        { question: 'Ce este o variabilă?', answer: 'un spațiu de stocare' },
+        { question: 'Ce tip de variabilă stochează numere întregi?', answer: 'integer' }
+      ],
       completed: false,
       score: 0
     },
     {
       id: 2,
-      title: 'Română - Literatură',
-      description: 'Analiză literară',
-      difficulty: 'ușor',
-      questionsCount: 8,
-      completed: true,
-      score: 85
+      title: 'Capitolul 2: Funcții',
+      questions: [
+        { question: 'Ce este o funcție?', answer: 'un bloc de cod reutilizabil' },
+        { question: 'Ce returnează o funcție void?', answer: 'nimic' }
+      ],
+      completed: false,
+      score: 0
     }
   ])
   
@@ -79,20 +81,25 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   function submitAnswer(answer) {
+    if (!currentQuiz.value || !currentQuiz.value.questions) return
+    
+    const currentQuestion = currentQuiz.value.questions[currentQuestionIndex.value]
+    const isCorrect = answer.trim().toLowerCase() === currentQuestion.answer.trim().toLowerCase()
+    
     userAnswers.value.push({
       questionIndex: currentQuestionIndex.value,
-      answer,
+      question: currentQuestion.question,
+      userAnswer: answer,
+      correct: isCorrect,
       timestamp: Date.now()
     })
-    
-    // Verifică răspunsul (aici ai logica de verificare)
-    const isCorrect = checkAnswer(answer)
     
     if (isCorrect) {
       score.value += 10
     }
     
-    nextQuestion()
+    // Nu apelăm nextQuestion automat - lasăm utilizatorul să apese butonul
+    return isCorrect
   }
 
   function nextQuestion() {
@@ -111,7 +118,7 @@ export const useQuizStore = defineStore('quiz', () => {
     quizCompleted.value = true
     quizStarted.value = false
     
-    // Actualizează scorul în lista de quiz-uri
+    // Salvare rezultat în quiz
     const quizIndex = quizzes.value.findIndex(q => q.id === currentQuiz.value.id)
     if (quizIndex !== -1) {
       quizzes.value[quizIndex].completed = true
@@ -160,12 +167,6 @@ export const useQuizStore = defineStore('quiz', () => {
       quiz.score = 0
     })
     console.log('🔄 Toate quiz-urile resetate')
-  }
-
-  function checkAnswer(answer) {
-    // Aici poți adăuga logica de verificare a răspunsului
-    // Momentan returnează true pentru testare
-    return Math.random() > 0.5
   }
 
   function startTimer() {

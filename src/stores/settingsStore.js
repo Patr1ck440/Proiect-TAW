@@ -41,7 +41,7 @@ export const useSettingsStore = defineStore('settings', () => {
     if (availableThemes.value.includes(theme)) {
       settings.value.theme = theme
       localStorage.setItem('theme', theme)
-      console.log(`🎨 Temă schimbată la: ${theme}`)
+      console.log(` Temă schimbată la: ${theme}`)
     }
   }
 
@@ -49,7 +49,7 @@ export const useSettingsStore = defineStore('settings', () => {
     if (availableFontSizes.value.includes(size)) {
       settings.value.fontSize = size
       localStorage.setItem('fontSize', size)
-      console.log(`🔠 Mărime font schimbată la: ${size}`)
+      console.log(` Mărime font schimbată la: ${size}`)
     }
   }
 
@@ -57,44 +57,44 @@ export const useSettingsStore = defineStore('settings', () => {
     if (availableFonts.value.includes(font)) {
       settings.value.fontFamily = font
       localStorage.setItem('fontFamily', font)
-      console.log(`✏️ Font schimbat la: ${font}`)
+      console.log(` Font schimbat la: ${font}`)
     }
   }
 
   function setLanguage(lang) {
     settings.value.language = lang
     localStorage.setItem('language', lang)
-    console.log(`🌐 Limbă schimbată la: ${lang}`)
+    console.log(` Limbă schimbată la: ${lang}`)
   }
 
   function toggleSound() {
     settings.value.soundEnabled = !settings.value.soundEnabled
-    console.log(`🔊 Sunet: ${settings.value.soundEnabled ? 'ACTIVAT' : 'DEZACTIVAT'}`)
+    console.log(` Sunet: ${settings.value.soundEnabled ? 'ACTIVAT' : 'DEZACTIVAT'}`)
   }
 
   function toggleNotifications() {
     settings.value.notifications = !settings.value.notifications
-    console.log(`🔔 Notificări: ${settings.value.notifications ? 'ACTIVATE' : 'DEZACTIVATE'}`)
+    console.log(` Notificări: ${settings.value.notifications ? 'ACTIVATE' : 'DEZACTIVATE'}`)
   }
 
   function toggleAutoSave() {
     settings.value.autoSave = !settings.value.autoSave
-    console.log(`💾 Auto-save: ${settings.value.autoSave ? 'ACTIVAT' : 'DEZACTIVAT'}`)
+    console.log(` Auto-save: ${settings.value.autoSave ? 'ACTIVAT' : 'DEZACTIVAT'}`)
   }
 
   function toggleVibration() {
     settings.value.vibration = !settings.value.vibration
-    console.log(`📳 Vibrație: ${settings.value.vibration ? 'ACTIVATĂ' : 'DEZACTIVATĂ'}`)
+    console.log(` Vibrație: ${settings.value.vibration ? 'ACTIVATĂ' : 'DEZACTIVATĂ'}`)
   }
 
   function toggleHighContrast() {
     settings.value.highContrast = !settings.value.highContrast
-    console.log(`🎭 Contrast ridicat: ${settings.value.highContrast ? 'ACTIVAT' : 'DEZACTIVAT'}`)
+    console.log(` Contrast ridicat: ${settings.value.highContrast ? 'ACTIVAT' : 'DEZACTIVAT'}`)
   }
 
   function toggleReducedMotion() {
     settings.value.reducedMotion = !settings.value.reducedMotion
-    console.log(`🎬 Mișcare redusă: ${settings.value.reducedMotion ? 'ACTIVATĂ' : 'DEZACTIVATĂ'}`)
+    console.log(` Mișcare redusă: ${settings.value.reducedMotion ? 'ACTIVATĂ' : 'DEZACTIVATĂ'}`)
   }
 
   function resetToDefaults() {
@@ -110,7 +110,7 @@ export const useSettingsStore = defineStore('settings', () => {
       highContrast: false,
       reducedMotion: false
     }
-    console.log('🔄 Setări resetate la valorile implicite')
+    console.log(' Setări resetate la valorile implicite')
   }
 
   function loadSettings() {
@@ -124,27 +124,27 @@ export const useSettingsStore = defineStore('settings', () => {
     if (savedFontFamily) settings.value.fontFamily = savedFontFamily
     if (savedLanguage) settings.value.language = savedLanguage
     
-    console.log('📥 Setări încărcate din localStorage')
+    console.log(' Setări încărcate din localStorage')
   }
 
   function saveSettings() {
     Object.keys(settings.value).forEach(key => {
       localStorage.setItem(key, settings.value[key])
     })
-    console.log('💾 Setări salvate în localStorage')
+    console.log('Setări salvate în localStorage')
   }
 
   function addCustomFont(font) {
     if (!availableFonts.value.includes(font)) {
       availableFonts.value.push(font)
-      console.log(`➕ Font personalizat adăugat: ${font}`)
+      console.log(` Font personalizat adăugat: ${font}`)
     }
   }
 
   function addCustomTheme(theme) {
     if (!availableThemes.value.includes(theme)) {
       availableThemes.value.push(theme)
-      console.log(`➕ Temă personalizată adăugată: ${theme}`)
+      console.log(` Temă personalizată adăugată: ${theme}`)
     }
   }
 

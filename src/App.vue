@@ -10,7 +10,7 @@ const router = useRouter()
 const settingsStore = useSettingsStore()
 const userStore = useUserStore()
 
-// 🔴 WATCH GLOBAL pentru setări
+
 watch(
   () => settingsStore.settings.fontFamily,
   (font) => {

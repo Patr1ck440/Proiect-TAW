@@ -7,7 +7,7 @@ export const useScoreStore = defineStore('score', () => {
     {
       id: 1,
       quizId: 1,
-      quizTitle: 'Matematică - Algebră',
+      quizTitle: 'Capitolul 1: Variabile',
       score: 85,
       maxScore: 100,
       date: '2024-01-10',
@@ -18,7 +18,7 @@ export const useScoreStore = defineStore('score', () => {
     {
       id: 2,
       quizId: 2,
-      quizTitle: 'Română - Literatură',
+      quizTitle: 'Capitolul 2: Funcții',
       score: 90,
       maxScore: 100,
       date: '2024-01-09',
@@ -87,6 +87,30 @@ export const useScoreStore = defineStore('score', () => {
   })
 
   // Actions
+  function addScoreFromQuiz(quizData, userAnswers, score, timeSpent) {
+    const correctAnswers = userAnswers.filter(answer => answer.correct).length
+    const totalQuestions = userAnswers.length
+    
+    const newScore = {
+      id: scores.value.length + 1,
+      quizId: quizData.id,
+      quizTitle: quizData.title,
+      score: score,
+      maxScore: totalQuestions * 10, // 10 puncte pe întrebare
+      date: new Date().toISOString().split('T')[0],
+      timeSpent: formatTime(timeSpent),
+      correctAnswers: correctAnswers,
+      totalQuestions: totalQuestions
+    }
+    
+    scores.value.push(newScore)
+    updateHighScores()
+    updateUserRank()
+    
+    console.log(`✅ Scor adăugat: ${score}/${newScore.maxScore}`)
+    return newScore
+  }
+
   function addScore(scoreData) {
     const newScore = {
       id: scores.value.length + 1,
@@ -98,7 +122,7 @@ export const useScoreStore = defineStore('score', () => {
     updateHighScores()
     updateUserRank()
     
-    console.log(`📊 Scor adăugat: ${scoreData.score}/${scoreData.maxScore}`)
+    console.log(`➕ Scor adăugat: ${scoreData.score}/${scoreData.maxScore}`)
   }
 
   function removeScore(scoreId) {
@@ -115,7 +139,6 @@ export const useScoreStore = defineStore('score', () => {
   }
 
   function updateHighScores() {
-    // Sort scores and take top 10
     highScores.value = [...scores.value]
       .sort((a, b) => b.score - a.score)
       .slice(0, 10)
@@ -124,16 +147,15 @@ export const useScoreStore = defineStore('score', () => {
   }
 
   function updateUserRank() {
-    // Simulăm un calcul de rank
     const newRank = Math.max(1, Math.floor(Math.random() * totalUsers.value))
     userRank.value = newRank
-    console.log(`🥇 Rank actualizat: ${newRank}/${totalUsers.value}`)
+    console.log(`📊 Rank actualizat: ${newRank}/${totalUsers.value}`)
   }
 
   function clearAllScores() {
     scores.value = []
     highScores.value = []
-    console.log('🗑️ Toate scorurile eliminate')
+    console.log('🔄 Toate scorurile eliminate')
   }
 
   function calculateStatistics() {
@@ -170,7 +192,7 @@ export const useScoreStore = defineStore('score', () => {
     linkElement.setAttribute('download', exportFileDefaultName)
     linkElement.click()
     
-    console.log('📤 Scoruri exportate')
+    console.log('💾 Scoruri exportate')
   }
 
   function importScores(data) {
@@ -181,6 +203,36 @@ export const useScoreStore = defineStore('score', () => {
       console.log('📥 Scoruri importate cu succes')
     } catch (error) {
       console.error('❌ Eroare la importul scorurilor:', error)
+    }
+  }
+
+  // Helper functions
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
+  }
+
+  function getLatestScore() {
+    if (scores.value.length === 0) return null
+    return scores.value[scores.value.length - 1]
+  }
+
+  function getQuizStats(quizId) {
+    const quizScores = filterScoresByQuiz(quizId)
+    if (quizScores.length === 0) return null
+    
+    const totalScore = quizScores.reduce((sum, score) => sum + score.score, 0)
+    const avgScore = Math.round(totalScore / quizScores.length)
+    const bestScore = Math.max(...quizScores.map(s => s.score))
+    const attempts = quizScores.length
+    
+    return {
+      quizId,
+      attempts,
+      averageScore: avgScore,
+      bestScore,
+      latestScore: quizScores[quizScores.length - 1].score
     }
   }
 
@@ -205,6 +257,7 @@ export const useScoreStore = defineStore('score', () => {
     getScoreDistribution,
     
     // Actions
+    addScoreFromQuiz,
     addScore,
     removeScore,
     updateScore,
@@ -215,6 +268,8 @@ export const useScoreStore = defineStore('score', () => {
     filterScoresByQuiz,
     filterScoresByDate,
     exportScores,
-    importScores
+    importScores,
+    getLatestScore,
+    getQuizStats
   }
 })

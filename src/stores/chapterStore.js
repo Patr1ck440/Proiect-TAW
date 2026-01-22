@@ -36,9 +36,31 @@ export const useChapterStore = defineStore('chapter', () => {
       progress: 100,
       questions: 12,
       duration: '1.5 ore'
+    },
+    {
+      id: 4,
+      title: 'Literatură Română',
+      subject: 'Română',
+      difficulty: 'ușor',
+      description: 'Autori și opere clasice',
+      completed: true,
+      progress: 100,
+      questions: 12,
+      duration: '1.5 ore'
+    },
+    {
+      id: 5,
+      title: 'Literatură Română',
+      subject: 'Română',
+      difficulty: 'ușor',
+      description: 'Autori și opere clasice',
+      completed: true,
+      progress: 100,
+      questions: 12,
+      duration: '1.5 ore'
     }
   ])
-  
+
   const currentChapter = ref(null)
   const selectedSubject = ref('all')
 
@@ -77,7 +99,7 @@ export const useChapterStore = defineStore('chapter', () => {
     const chapter = chapters.value.find(ch => ch.id === chapterId)
     if (chapter) {
       currentChapter.value = chapter
-      console.log(`📖 Capitol selectat: ${chapter.title}`)
+      console.log(` Capitol selectat: ${chapter.title}`)
     }
   }
 
@@ -86,7 +108,7 @@ export const useChapterStore = defineStore('chapter', () => {
     if (chapter) {
       chapter.completed = true
       chapter.progress = 100
-      console.log(`✅ Capitol completat: ${chapter.title}`)
+      console.log(` Capitol completat: ${chapter.title}`)
     }
   }
 
@@ -97,7 +119,7 @@ export const useChapterStore = defineStore('chapter', () => {
       if (chapter.progress === 100) {
         chapter.completed = true
       }
-      console.log(`📊 Progres capitol ${chapter.title}: ${chapter.progress}%`)
+      console.log(` Progres capitol ${chapter.title}: ${chapter.progress}%`)
     }
   }
 
@@ -108,25 +130,25 @@ export const useChapterStore = defineStore('chapter', () => {
       completed: false,
       progress: 0
     })
-    console.log(`➕ Capitol adăugat: ${chapter.title}`)
+    console.log(` Capitol adăugat: ${chapter.title}`)
   }
 
   function removeChapter(chapterId) {
     chapters.value = chapters.value.filter(ch => ch.id !== chapterId)
-    console.log(`🗑️ Capitol eliminat: ID ${chapterId}`)
+    console.log(` Capitol eliminat: ID ${chapterId}`)
   }
 
   function updateChapter(chapterId, updates) {
     const index = chapters.value.findIndex(ch => ch.id === chapterId)
     if (index !== -1) {
       chapters.value[index] = { ...chapters.value[index], ...updates }
-      console.log(`✏️ Capitol actualizat: ${chapters.value[index].title}`)
+      console.log(` Capitol actualizat: ${chapters.value[index].title}`)
     }
   }
 
   function filterBySubject(subject) {
     selectedSubject.value = subject
-    console.log(`🔍 Filtrat după materie: ${subject}`)
+    console.log(` Filtrat după materie: ${subject}`)
   }
 
   function resetChapterProgress(chapterId) {
@@ -134,7 +156,7 @@ export const useChapterStore = defineStore('chapter', () => {
     if (chapter) {
       chapter.completed = false
       chapter.progress = 0
-      console.log(`🔄 Progres resetat pentru capitol: ${chapter.title}`)
+      console.log(` Progres resetat pentru capitol: ${chapter.title}`)
     }
   }
 
@@ -143,7 +165,7 @@ export const useChapterStore = defineStore('chapter', () => {
       chapter.completed = false
       chapter.progress = 0
     })
-    console.log('🔄 Progresul tuturor capitoarelor resetat')
+    console.log(' Progresul tuturor capitoarelor resetat')
   }
 
   function sortChaptersBy(property) {
@@ -158,7 +180,7 @@ export const useChapterStore = defineStore('chapter', () => {
       }
       return 0
     })
-    console.log(`🔢 Capitole sortate după: ${property}`)
+    console.log(` Capitole sortate după: ${property}`)
   }
 
   return {

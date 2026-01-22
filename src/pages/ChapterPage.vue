@@ -1,32 +1,32 @@
 <template>
-  <div>
-    <ChapterPage v-if="!chapter" />
-    <ChapterTitle v-else :title="chapter.title" />
-    <p>Întrebarea curentă: {{ currentQuestion?.question }}</p>
-    <!-- restul quiz-ului ca în QuizPage.vue -->
+  <div v-if="chapter">
+    <ChapterTitle :title="chapter.title" />
+
+    <p>Materie: {{ chapter.subject }}</p>
+    <p>Dificultate: {{ chapter.difficulty }}</p>
+    <p>Descriere: {{ chapter.description }}</p>
+    <p>Progres: {{ chapter.progress }}%</p>
+    <p>Întrebări totale: {{ chapter.questions }}</p>
+    <p>Durată estimată: {{ chapter.duration }}</p>
+  </div>
+
+  <div v-else>
+    <p>Capitolul nu există.</p>
   </div>
 </template>
 
-
-
-
 <script setup>
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
- import ChapterTitle from '@/components/ChapterTitle.vue'
-
-
-
-
+import { useChapterStore } from '@/stores/chapterStore'
+import ChapterTitle from '@/components/ChapterTitle.vue'
 
 const route = useRoute()
-const chapterIndex = Number(route.params.id)
+const chapterStore = useChapterStore()
 
-const chapters = ref([
-  { title: 'Capitolul 1: Variabile', questions: [{ question: "Ce este o variabilă?", answer: "un spațiu de stocare" },{ question: "Ce tip de variabilă stochează numere întregi?", answer: "integer"}]},
-  { title: 'Capitolul 2: Bucla for', questions: [{ question: "Cum începe o buclă for?", answer: "for(" },{ question: "Ce face break?", answer: "oprește bucla" }]}
-])
+const chapterId = Number(route.params.id)
 
-const chapter = computed(() => chapters.value[chapterIndex])
-const currentQuestion = ref(chapter.value.questions[0])
+const chapter = computed(() =>
+  chapterStore.chapters.find(ch => ch.id === chapterId)
+)
 </script>

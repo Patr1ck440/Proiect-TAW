@@ -59,7 +59,7 @@ export const useUserStore = defineStore('user', () => {
     user.value = { ...user.value, ...userData }
     isAuthenticated.value = true
     lastActive.value = new Date().toISOString()
-    console.log('✅ Utilizator autentificat:', user.value.name)
+    console.log(' Utilizator autentificat:', user.value.name)
   }
 
   function logout() {
@@ -81,28 +81,28 @@ export const useUserStore = defineStore('user', () => {
       }
     }
     isAuthenticated.value = false
-    console.log('🚪 Utilizator delogat')
+    console.log(' Utilizator delogat')
   }
 
   function updateProfile(updatedData) {
     user.value = { ...user.value, ...updatedData }
-    console.log('📝 Profil actualizat')
+    console.log(' Profil actualizat')
   }
 
   function updatePreferences(preferences) {
     user.value.preferences = { ...user.value.preferences, ...preferences }
-    console.log('⚙️ Preferințe actualizate')
+    console.log(' Preferințe actualizate')
   }
 
   function addPoints(pointsToAdd) {
     user.value.points += pointsToAdd
     updateLevel()
-    console.log(`🎯 ${pointsToAdd} puncte adăugate. Total: ${user.value.points}`)
+    console.log(` ${pointsToAdd} puncte adăugate. Total: ${user.value.points}`)
   }
 
   function deductPoints(pointsToDeduct) {
     user.value.points = Math.max(0, user.value.points - pointsToDeduct)
-    console.log(`📉 ${pointsToDeduct} puncte scăzute. Total: ${user.value.points}`)
+    console.log(` ${pointsToDeduct} puncte scăzute. Total: ${user.value.points}`)
   }
 
   function updateLevel() {
@@ -110,20 +110,20 @@ export const useUserStore = defineStore('user', () => {
     if (newLevel > user.value.level) {
       user.value.level = newLevel
       addBadge(`level-${newLevel}`)
-      console.log(`🏆 Nivel actualizat la: ${user.value.level}`)
+      console.log(` Nivel actualizat la: ${user.value.level}`)
     }
   }
 
   function addBadge(badgeName) {
     if (!user.value.badges.includes(badgeName)) {
       user.value.badges.push(badgeName)
-      console.log(`🎖️ Badge adăugat: ${badgeName}`)
+      console.log(` Badge adăugat: ${badgeName}`)
     }
   }
 
   function removeBadge(badgeName) {
     user.value.badges = user.value.badges.filter(badge => badge !== badgeName)
-    console.log(`🗑️ Badge eliminat: ${badgeName}`)
+    console.log(` Badge eliminat: ${badgeName}`)
   }
 
   function updateStreak() {
@@ -143,7 +143,7 @@ export const useUserStore = defineStore('user', () => {
     }
     
     lastActive.value = new Date().toISOString()
-    console.log(`🔥 Streak actualizat: ${user.value.streak} zile`)
+    console.log(` Streak actualizat: ${user.value.streak} zile`)
   }
 
   function resetProgress() {
@@ -151,32 +151,32 @@ export const useUserStore = defineStore('user', () => {
     user.value.level = 1
     user.value.streak = 0
     user.value.badges = ['beginner']
-    console.log('🔄 Progres resetat')
+    console.log(' Progres resetat')
   }
 
   function uploadAvatar(avatarUrl) {
     user.value.avatar = avatarUrl
-    console.log('🖼️ Avatar actualizat')
+    console.log(' Avatar actualizat')
   }
 
   function toggleNotifications() {
     user.value.preferences.notifications = !user.value.preferences.notifications
-    console.log(`🔔 Notificări: ${user.value.preferences.notifications ? 'ACTIVATE' : 'DEZACTIVATE'}`)
+    console.log(` Notificări: ${user.value.preferences.notifications ? 'ACTIVATE' : 'DEZACTIVATE'}`)
   }
 
   function toggleSound() {
     user.value.preferences.sound = !user.value.preferences.sound
-    console.log(`🔊 Sunet: ${user.value.preferences.sound ? 'ACTIVAT' : 'DEZACTIVAT'}`)
+    console.log(` Sunet: ${user.value.preferences.sound ? 'ACTIVAT' : 'DEZACTIVAT'}`)
   }
 
   function changeTheme(theme) {
     user.value.preferences.theme = theme
-    console.log(`🎨 Temă schimbată la: ${theme}`)
+    console.log(` Temă schimbată la: ${theme}`)
   }
 
   function changeLanguage(language) {
     user.value.preferences.language = language
-    console.log(`🌐 Limbă schimbată la: ${language}`)
+    console.log(` Limbă schimbată la: ${language}`)
   }
 
   return {
@@ -204,7 +204,6 @@ export const useUserStore = defineStore('user', () => {
     getPreferredTheme,
     getPreferredLanguage,
     
-    // Actions
     login,
     logout,
     updateProfile,

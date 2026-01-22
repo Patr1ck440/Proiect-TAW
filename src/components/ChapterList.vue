@@ -2,8 +2,8 @@
   <div class="chapter-list">
     <h3>Capitole disponibile:</h3>
     <ul>
-      <li v-for="(chapter, index) in chapters" :key="index">
-        <button @click="$emit('select-chapter', index)">
+      <li v-for="chapter in chapters" :key="chapter.id">
+        <button @click="$emit('select-chapter', chapter.id)">
           {{ chapter.title }}
         </button>
       </li>
@@ -13,13 +13,6 @@
 
 <script setup>
 defineProps({
-  chapters: {
-    type: Array,
-    required: true
-  }
+  chapters: Array
 })
 </script>
-
-<style scoped>
-
-</style>
