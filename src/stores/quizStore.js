@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 export const useQuizStore = defineStore('quiz', () => {
   // State
@@ -37,14 +37,14 @@ export const useQuizStore = defineStore('quiz', () => {
   // Getters
   const getCurrentQuiz = computed(() => currentQuiz.value)
   const getAllQuizzes = computed(() => quizzes.value)
-  const getCompletedQuizzes = computed(() => 
+  const getCompletedQuizzes = computed(() =>
     quizzes.value.filter(quiz => quiz.completed)
   )
-  const getIncompleteQuizzes = computed(() => 
+  const getIncompleteQuizzes = computed(() =>
     quizzes.value.filter(quiz => !quiz.completed)
   )
   const getQuizCount = computed(() => quizzes.value.length)
-  const getCompletedCount = computed(() => 
+  const getCompletedCount = computed(() =>
     quizzes.value.filter(quiz => quiz.completed).length
   )
   const getProgressPercentage = computed(() => {
@@ -76,7 +76,7 @@ export const useQuizStore = defineStore('quiz', () => {
       quizCompleted.value = false
       score.value = 0
       quizTimer.value = 0
-      console.log(`✅ Început quiz: ${quiz.title}`)
+      console.log(` Început quiz: ${quiz.title}`)
     }
   }
 
@@ -98,7 +98,6 @@ export const useQuizStore = defineStore('quiz', () => {
       score.value += 10
     }
     
-    // Nu apelăm nextQuestion automat - lasăm utilizatorul să apese butonul
     return isCorrect
   }
 
@@ -112,20 +111,19 @@ export const useQuizStore = defineStore('quiz', () => {
     }
   }
 
-  function finishQuiz() {
-    if (!currentQuiz.value) return
-    
-    quizCompleted.value = true
-    quizStarted.value = false
-    
-    // Salvare rezultat în quiz
-    const quizIndex = quizzes.value.findIndex(q => q.id === currentQuiz.value.id)
+function finishQuiz() {
+  if (!currentQuiz.value) return
+  
+  quizCompleted.value = true
+  quizStarted.value = false
+  
+  const quizIndex = quizzes.value.findIndex(q => q.id === currentQuiz.value.id)
     if (quizIndex !== -1) {
       quizzes.value[quizIndex].completed = true
       quizzes.value[quizIndex].score = score.value
     }
     
-    console.log(`🎉 Quiz terminat! Scor: ${score.value}`)
+    console.log(` Quiz terminat! Scor: ${score.value}`)
   }
 
   function resetQuiz() {
@@ -135,7 +133,7 @@ export const useQuizStore = defineStore('quiz', () => {
     quizStarted.value = false
     quizCompleted.value = false
     score.value = 0
-    console.log('🔄 Quiz resetat')
+    console.log(' Quiz resetat')
   }
 
   function addQuiz(quiz) {
@@ -145,19 +143,19 @@ export const useQuizStore = defineStore('quiz', () => {
       completed: false,
       score: 0
     })
-    console.log(`➕ Quiz adăugat: ${quiz.title}`)
+    console.log(` Quiz adăugat: ${quiz.title}`)
   }
 
   function removeQuiz(quizId) {
     quizzes.value = quizzes.value.filter(q => q.id !== quizId)
-    console.log(`🗑️ Quiz eliminat: ID ${quizId}`)
+    console.log(` Quiz eliminat: ID ${quizId}`)
   }
 
   function updateQuiz(quizId, updates) {
     const index = quizzes.value.findIndex(q => q.id === quizId)
     if (index !== -1) {
       quizzes.value[index] = { ...quizzes.value[index], ...updates }
-      console.log(`✏️ Quiz actualizat: ${quizzes.value[index].title}`)
+      console.log(` Quiz actualizat: ${quizzes.value[index].title}`)
     }
   }
 
@@ -166,7 +164,7 @@ export const useQuizStore = defineStore('quiz', () => {
       quiz.completed = false
       quiz.score = 0
     })
-    console.log('🔄 Toate quiz-urile resetate')
+    console.log(' Toate quiz-urile resetate')
   }
 
   function startTimer() {
@@ -179,6 +177,31 @@ export const useQuizStore = defineStore('quiz', () => {
       }
     }, 1000)
   }
+
+ 
+  watch(currentQuiz, (newQuiz) => {
+    if (newQuiz) {
+      console.log(` Quiz schimbat: ${newQuiz.title}`)
+    }
+  })
+
+ 
+  watch(currentQuestionIndex, (newIndex) => {
+    console.log(` Întrebare nouă: ${newIndex + 1}`)
+  })
+
+  
+  watch(quizCompleted, (done) => {
+    if (done) {
+      console.log(` Quiz finalizat! Scor final: ${score.value}`)
+    }
+  })
+
+ 
+  watch(quizTimer, () => {
+    // console.log(` Timer: ${quizTimer.value}s`)
+  })
+  // ---------------------------------------------------------
 
   return {
     // State
