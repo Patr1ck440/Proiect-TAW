@@ -17,7 +17,6 @@ services:
     working_dir: /task/app
     user: 1000:1000
 
-  
   api:
     build: .docker/api
     stdin_open: true

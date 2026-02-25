@@ -1,13 +1,13 @@
 {
-"folders": [
-{
-"path": "app"
-},
-{
-"path": "shared"
-},
-{
-"path": "."
-}
-]
+  "folders": [
+    {
+      "path": "app",
+    },
+    {
+      "path": "shared",
+    },
+    {
+      "path": ".",
+    },
+  ],
 }
