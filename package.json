@@ -1,0 +1,10 @@
+{
+  "name": "task",
+  "packageManager": "yarn@4.9.2",
+  "private": true,
+  "workspaces": [
+    "api",
+    "web",
+    "packages/*"
+  ]
+}
