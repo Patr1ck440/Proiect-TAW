@@ -1,11 +1,14 @@
 {
-  "name": "app",
+  "name": "api",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "api.js",
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "node api-http.js",
-    "start": "node api-http.js"
+    "dev": "node api.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1"
   }
 }
